@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="MIT"
+[[mods]]
+modId="carpeteverything"
+version="${file.jarVersion}"
+displayName="Carpet Everything!"
+logoFile="carpev.png"
+authors="Wink"
+displayURL="https://wouink.github.io"
+description='''
+Put carpets on stairs and trapdoors!
+'''
