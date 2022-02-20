@@ -3,17 +3,15 @@ package io.github.wouink.carpev;
 import io.github.wouink.carpev.block.CarpetOnStairs;
 import io.github.wouink.carpev.block.CarpetOnTrapdoor;
 import io.github.wouink.carpev.event.PlaceCarpet;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.item.DyeColor;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -31,8 +29,8 @@ public class CarpetEverything {
 		for(DyeColor dyeColor : DyeColor.values()) {
 			String color = dyeColor.getName();
 			Block coloredCarpet = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(String.format("minecraft:%s_carpet", color)));
-			Carpets_On_Stairs.put(color, new CarpetOnStairs(AbstractBlock.Properties.copy(coloredCarpet).dropsLike(coloredCarpet), String.format("%s_carpet_on_stairs", color), coloredCarpet));
-			Carpets_On_Trapdoors.put(color, new CarpetOnTrapdoor(AbstractBlock.Properties.copy(coloredCarpet).dropsLike(coloredCarpet), String.format("%s_carpet_on_trapdoor", color), coloredCarpet));
+			Carpets_On_Stairs.put(color, new CarpetOnStairs(BlockBehaviour.Properties.copy(coloredCarpet).dropsLike(coloredCarpet), String.format("%s_carpet_on_stairs", color), coloredCarpet));
+			Carpets_On_Trapdoors.put(color, new CarpetOnTrapdoor(BlockBehaviour.Properties.copy(coloredCarpet).dropsLike(coloredCarpet), String.format("%s_carpet_on_trapdoor", color), coloredCarpet));
 		}
 		if(ModList.get().getModFileById("furnish") == null) {
 			MinecraftForge.EVENT_BUS.register(new PlaceCarpet());
